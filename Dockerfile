@@ -1,7 +1,9 @@
 FROM python:3.10-slim
 
+# Set Python version explicitly for Hugging Face
+ENV PYTHON_VERSION=3.10
+
 # --- System deps required by Playwright browsers AND Tesseract ---
-# Added 'tesseract-ocr' to the install list
 RUN apt-get update && apt-get install -y \
     wget gnupg ca-certificates curl unzip \
     # Playwright dependencies
@@ -13,10 +15,10 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # --- Install Playwright + Chromium ---
-RUN pip install playwright && playwright install --with-deps chromium
+RUN pip install --no-cache-dir playwright && playwright install --with-deps chromium
 
 # --- Install uv package manager ---
-RUN pip install uv
+RUN pip install --no-cache-dir uv
 
 # --- Copy app to container ---
 WORKDIR /app
@@ -33,5 +35,4 @@ RUN uv sync --frozen
 EXPOSE 7860
 
 # --- Run your FastAPI app ---
-# uvicorn must be in pyproject dependencies
-CMD ["uv", "run", "main.py"]
+CMD ["uv", "run", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "7860"]
