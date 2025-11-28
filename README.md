@@ -204,7 +204,7 @@ playwright install chromium
 pip install uv
 
 # Make sure you're in the virtual environment
-python3 -m venv venv
+python3 -m venv .venv
 source .venv/bin/activate
 
 # Install all dependencies from requirements.txt
