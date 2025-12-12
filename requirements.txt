@@ -1,16 +1,19 @@
 fastapi
 uvicorn[standard]
 python-dotenv
+streamlit
 
 # LangChain ecosystem
-langchain
-langchain-core
-langchain-community
-langchain-google-genai
-langgraph
+langchain==1.1.3
+langchain-core==1.1.3
+langchain-community==1.1.3
+langchain-google-genai==0.3.0
+langgraph==1.0.2
+langchain-openai==1.1.2
+google-genai==0.5.1
 
 # Web/API automation
-playwright
+playwright==1.42.1
 
 # Utilities
 requests
@@ -21,12 +24,9 @@ seaborn
 scikit-learn
 beautifulsoup4
 
-# Google GenAI (recommended version)
-google-genai
-
 # OCR / Vision
 pytesseract
-Pillow
+Pillow<12
 
 # Audio
 SpeechRecognition
